@@ -1,3 +1,6 @@
+local player = ...
+local pn = tonumber(player:sub(-1))
+
 local t = Def.ActorFrame {}
 
 t[#t+1] =	Def.Sprite {	
@@ -62,7 +65,15 @@ t[#t+1] =	Def.Sprite {
 		self:cropleft(0)
 		self:croptop(0)
 		self:cropbottom(0)
-		self:zoom(0.65)
+		self:halign( 0.5 + 0.5*(pn*2-3) )
+		if IsUsingWideScreen() then
+			self:x(140*(pn*2-3))
+			self:zoom(0.55)
+		else
+			self:x(70*(pn*2-3))
+			self:y(100)
+			self:zoom(0.80)
+		end
 	end	
 }
 
